@@ -14,7 +14,7 @@ namespace ModernDev.AspNetCore.SimpleApp
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
+                .UseUrls("http://*:60000")
                 .UseStartup<Startup>()
                 .Build();
 
