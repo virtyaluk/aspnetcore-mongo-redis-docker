@@ -1,0 +1,27 @@
+version: '3'
+
+networks:
+  simpleapp_network:
+    driver: bridge
+
+services:
+  db:
+    image: mongo:latest
+    container_name: simpleapp_mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - simpleapp_network
+  
+  simpleapp:
+    build: ./AspNetCoreMvc
+    image: simpleapp
+    container_name: simpleapp_1
+    ports:
+      - "60000:60000"
+    depends_on:
+      - db
+    links:
+      - db
+    networks:
+      - simpleapp_network
