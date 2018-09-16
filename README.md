@@ -2,7 +2,15 @@
 
 This repo contains the code samples for the [Load balanced Asp.Net Core Application with Docker, MongoDB, and Redis](https://coding4dummies.net/load-balanced-asp-net-core-application-with-docker-mongodb-and-redis-c3c1c9ac2814) tutorial.
 
-...
+## :dvd: Setup
+
+Have [Docker :whale2:](https://docs.docker.com/install/) installed.
+
+From the root of the project run following:
+
+```sh
+docker-compose up
+```
 
 ## :green_book: License
 
