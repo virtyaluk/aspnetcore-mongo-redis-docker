@@ -8,20 +8,40 @@ services:
   db:
     image: mongo:latest
     container_name: simpleapp_mongo
-    ports:
-      - "27017:27017"
+    expose:
+      - "27017"
     networks:
       - simpleapp_network
+    
+  nginx:
+    build: ./Infrastructure/nginx
+    image: simpleapp_nginx
+    container_name: simpleapp_nginx
+    ports:
+      - "80:80"
+    networks:
+      - simpleapp_network
+    depends_on:
+      - simpleapp_1
+      - simpleapp_2
   
-  simpleapp:
+  simpleapp_1:
     build: ./AspNetCoreMvc
     image: simpleapp
     container_name: simpleapp_1
-    ports:
-      - "60000:60000"
+    expose:
+      - "60000"
     depends_on:
       - db
-    links:
+    networks:
+      - simpleapp_network
+  
+  simpleapp_2:
+    image: simpleapp
+    container_name: simpleapp_2
+    expose:
+      - "60000"
+    depends_on:
       - db
     networks:
       - simpleapp_network
