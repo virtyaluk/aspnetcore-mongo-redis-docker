@@ -25,6 +25,18 @@ services:
       - simpleapp_1
       - simpleapp_2
   
+  redis:
+    build: ./Infrastructure/redis
+    image: simpleapp_redis
+    container_name: simpleapp_redis
+    expose:
+      - "6379"
+    networks:
+      - simpleapp_network
+    depends_on:
+      - simpleapp_1
+      - simpleapp_2
+  
   simpleapp_1:
     build: ./AspNetCoreMvc
     image: simpleapp
